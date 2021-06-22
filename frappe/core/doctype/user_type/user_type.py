@@ -39,7 +39,7 @@ class UserType(Document):
 			return
 
 		modules = frappe.get_all('DocType', fields=['distinct module as module'],
-			filters={'name': ('in', [d.document_type for d in self.user_doctypes])})
+			filters={'name': ('in', [d.document_type for d in self.user_doctypes])}, group_by='module')
 
 		self.set('user_type_modules', [])
 		for row in modules:
